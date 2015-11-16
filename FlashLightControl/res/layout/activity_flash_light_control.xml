@@ -1,0 +1,130 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:id="@+id/tv_device_tips"
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_medium"
+            android:text="@string/deviceid" />
+        <Spinner
+            android:id="@+id/spinner_device_id"
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_medium"/>
+
+        <CheckBox
+            android:id="@+id/cb_dubule_fl"
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_double" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+       	<TextView
+           android:layout_width="1dip"
+           android:layout_height="wrap_content"
+           android:padding="@dimen/padding_medium"/>
+
+       	 <RadioGroup
+       	     android:id="@+id/radioGroup1"
+       	     android:layout_width="1dip"
+       	     android:layout_height="wrap_content"
+       	     android:orientation="horizontal"
+       	     android:layout_span="3" >
+ 
+	        <RadioButton
+	            android:id="@+id/radioButtonOne"
+	            android:layout_height="wrap_content"
+	            android:checked="true"
+	            android:text="@string/rb_one" />
+
+	        <RadioButton
+	            android:id="@+id/radioButtonTwo"
+	            android:layout_height="wrap_content"
+	            android:text="@string/rb_two" />
+	
+	        <RadioButton
+	            android:id="@+id/radioButtonDouble"
+	            android:layout_height="wrap_content"
+	            android:text="@string/rb_double" />
+ 		</RadioGroup> 
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         >
+
+        <TextView
+            android:id="@+id/tv_device_duty"
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_medium"
+            android:text="@string/duty" />
+
+	    <EditText
+	        android:id="@+id/et_fllt_duty"
+	        android:layout_width="1dip"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:hint="@string/rb_one"
+	        android:inputType="number"
+	        android:padding="@dimen/padding_medium" >
+
+	    </EditText>
+
+	    <EditText
+	        android:id="@+id/et_fllt_duty2"
+	        android:layout_width="1dip"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:hint="@string/rb_two"
+	        android:inputType="number"
+	        android:padding="@dimen/padding_medium" />
+
+	    <TextView
+	        android:layout_width="1dip"
+	        android:layout_height="wrap_content"
+	        android:padding="@dimen/padding_medium"/>
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <TextView
+	        android:id="@+id/tv_tmieout"
+	        android:layout_width="1dip"
+	        android:layout_height="wrap_content"
+	        android:padding="@dimen/padding_medium"
+	        android:text="@string/tv_timeout" />
+
+        <EditText
+            android:id="@+id/et_timeout"
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:padding="@dimen/padding_medium"
+            android:visibility="visible" >
+
+    </EditText>
+	</TableRow>
+    <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="1dip"
+        android:layout_height="wrap_content"/>
+
+</TableLayout>

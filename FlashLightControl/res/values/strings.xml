@@ -1,0 +1,29 @@
+<resources>
+
+    <string name="app_name">闪光灯测试</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">退出</string>
+    <string name="title_activity_flash_light_control">闪光灯测试</string>
+    <string name="duty">闪光灯等级[0,∞)</string>
+    <string name="onoff">ONOFF</string>
+    <string name="deviceid">测试设备</string>
+    <string name="menu_about">关于</string>
+    <string name="tv_timeout">超时限定</string>
+    <string name="main_duble_flash">双闪</string>
+    <string name="idone">闪1</string>
+    <string name="idtwo">闪2</string>
+    <string name="rb_one">闪1</string>
+    <string name="rb_two">闪2</string>
+    <string name="rb_double">双闪</string>
+    <string name="got">知道了</string>
+    <string name="ttips">注意事项：\n&#160;*1、adb shell setenforce 0\n
+        &#160;2、adb shell chmod 777 /dev/kd_cmaera_flashlight\n
+        &#160;3、可以根据闪光灯的配置选择相关设置\n
+        &#160;4、如有2个闪光灯其duty值是单独配置\n
+        &#160;5、可长按输入框进行选择，也可直接输入\n
+        &#160;6、timeout值为0时表示永远不超时，其他的为对应时间超时关闭闪光灯\n
+        &#160;7、请使用eng版本 \n
+        &#160;8、其他未尽事宜，read SRC
+        </string>
+
+</resources>
