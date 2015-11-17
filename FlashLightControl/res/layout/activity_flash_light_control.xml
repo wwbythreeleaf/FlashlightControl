@@ -111,7 +111,6 @@
 	        android:layout_height="wrap_content"
 	        android:padding="@dimen/padding_medium"
 	        android:text="@string/tv_timeout" />
-
         <EditText
             android:id="@+id/et_timeout"
             android:layout_width="1dip"
@@ -119,8 +118,30 @@
             android:inputType="number"
             android:padding="@dimen/padding_medium"
             android:visibility="visible" >
+	    </EditText>
+	</TableRow>
+	    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
-    </EditText>
+        <TextView
+            android:id="@+id/tv_delay"
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_medium"
+            android:text="@string/delaytime" />
+
+        <EditText
+            android:id="@+id/et_delay"
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:hint="@string/delay_tips"
+            android:inputType="number"
+            android:padding="@dimen/padding_medium"
+            android:visibility="visible" >
+
+	    </EditText>
 	</TableRow>
     <ToggleButton
         android:id="@+id/toggleButton1"

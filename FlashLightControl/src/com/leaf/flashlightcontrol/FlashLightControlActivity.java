@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -50,8 +51,11 @@ public class FlashLightControlActivity extends Activity {
 	private EditText etTimeout;
 	private ToggleButton tb;
 	private RadioGroup rg;
-	
+	private EditText etDelay;	
 	private TableRow tr;
+	
+	private Thread thread;
+	private Integer	runstatus = 0;
 	
 	private final String mainCameraDev="1";
 	private final String subCameraDev="2";
@@ -64,6 +68,7 @@ public class FlashLightControlActivity extends Activity {
 	private String duty[] = {"0","0","0"};
 	private String dutyT = "0";
 	private String timeOut = "500";
+	private String delay = "";
 	private boolean onOff = false;
 	
 	private final String TAG = "FLLT";
@@ -244,12 +249,55 @@ public class FlashLightControlActivity extends Activity {
 					etDuty2.setText(duty[2]);
 				if(etTimeout.getText().toString().equals(""))
 					etTimeout.setText(timeOut);
-				controlFlashLight(Integer.valueOf(deviceId), Integer.valueOf(duty[1]), Integer.valueOf(duty[2]), Integer.valueOf(timeOut), isChecked);
+				if(etDelay.getText().toString().equals("")){
+					int ret;
+					ret = controlFlashLight(Integer.valueOf(deviceId), Integer.valueOf(duty[1]), Integer.valueOf(duty[2]), Integer.valueOf(timeOut), onOff);
+					if(ret != 0)
+						Toast.makeText(FlashLightControlActivity.this,"ret="+ ret + "\n≥¢ ‘adb shell chmod 777 /dev/kd_camera_flashlight?",Toast.LENGTH_SHORT).show();
+				}else{
+					delay = etDelay.getText().toString();
+					synchronized (runstatus) {
+						runstatus.notify();
+					}
+				}
 			}
 		});
         
+        etDelay = (EditText)findViewById(R.id.et_delay);
         if(fltNativeInit() != 0)
         	Log.e(TAG, "fltNativeInit return FAILn\n");
+        thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				boolean onoff = true;
+				while(true){
+					synchronized (runstatus) {
+						if(onOff){
+							controlFlashLight(Integer.valueOf(deviceId), Integer.valueOf(duty[1]), Integer.valueOf(duty[2]), Integer.valueOf(timeOut), onoff);
+							onoff = !onoff;
+							try {
+								Thread.sleep(Long.valueOf(delay));
+							} catch (NumberFormatException e) {
+								e.printStackTrace();
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}else{
+							try {
+								Log.d(TAG,"before wait");
+								runstatus.wait();
+							} catch (NumberFormatException e) {
+								e.printStackTrace();
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		});
+        thread.start();
     }
     
     private void getDuty(int whichDuty){
@@ -296,8 +344,6 @@ public class FlashLightControlActivity extends Activity {
 				ret2 = fltNativeOnOff(0);
 			}
 		}
-		if(ret != 0 ||  ret2 != 0)
-			Toast.makeText(FlashLightControlActivity.this,"ret="+ ret + " ret2="+ret2 + "\n≥¢ ‘adb shell chmod 777 /dev/kd_camera_flashlight?",Toast.LENGTH_SHORT).show();
     	return ret + ret2;
     }
     @Override
@@ -321,5 +367,11 @@ public class FlashLightControlActivity extends Activity {
 	        	break;
         }
         return super.onOptionsItemSelected(item);  
-    }  
+    }
+    public void onStop(){
+    	thread.stop();
+    }
+    public void onRestart(){
+    	thread.start();
+    }
 }

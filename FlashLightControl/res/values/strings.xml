@@ -25,5 +25,7 @@
         &#160;7、请使用eng版本 \n
         &#160;8、其他未尽事宜，read SRC
         </string>
+    <string name="delaytime">开关延时</string>
+    <string name="delay_tips">非空,连闪</string>
 
 </resources>
