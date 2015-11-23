@@ -23,7 +23,8 @@
         &#160;5、可长按输入框进行选择，也可直接输入\n
         &#160;6、timeout值为0时表示永远不超时，其他的为对应时间超时关闭闪光灯\n
         &#160;7、请使用eng版本 \n
-        &#160;8、其他未尽事宜，read SRC
+        &#160;8、使用闪瞎狗眼模式时需要注意超时和延时时间，同时生效的\n
+        &#160;9、其他未尽事宜，read SRC
         </string>
     <string name="delaytime">开关延时</string>
     <string name="delay_tips">非空,连闪</string>
